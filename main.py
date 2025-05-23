@@ -476,7 +476,6 @@ async def start_handler(message: Message, state: FSMContext):
                 f"{EMOJI['info']} <b>Статус:</b> Ожидание подключения\n\n"
                 f"{EMOJI['loading']} Администраторы уведомлены о вашем запросе.\n"
                 f"Как только один из них добавит вас в систему, вы получите уведомление.\n\n"
-                f"{EMOJI['help']} Используйте кнопки меню для навигации."
             )
             
             await message.answer(text, reply_markup=keyboard, parse_mode='HTML')
