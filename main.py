@@ -674,7 +674,7 @@ async def status_button(message: Message):
                 
                 text += f"{EMOJI['bell']} <b>График напоминаний:</b>\n"
                 text += f"• День: <b>{day} число</b> каждого месяца\n"
-                text += f"• Время: <b>{time}</b>\n\n"
+                text += f"• Время: <b>{time}</b> (+5 МСК)\n\n"
                 
                 text += f"{EMOJI['money']} <b>История платежей:</b>\n"
                 text += f"• Подтверждено: <b>{confirmed_count}</b>\n"
@@ -1483,11 +1483,11 @@ async def process_time(message: Message, state: FSMContext):
         data = await state.get_data()
         
         text = (
-            f"{EMOJI['success']} Время: <b>{time_str}</b>\n\n"
+            f"{EMOJI['success']} Время: <b>{time_str}</b> (+5 МСК)\n\n"
             f"{EMOJI['info']} <b>Итоговые настройки:</b>\n"
             f"• Пользователь: <b>{escape_html(data.get('user_name', 'Неизвестен'))}</b>\n"
             f"• День: <b>{data.get('day')} число</b>\n"
-            f"• Время: <b>{time_str}</b>\n\n"
+            f"• Время: <b>{time_str}</b> (+5 МСК)\n\n"
             f"{EMOJI['chat']} <b>Выберите сообщение для напоминания:</b>\n\n"
             f"<b>Ваше сообщение по умолчанию:</b>\n"
             f"<i>{escape_html(default_message)}</i>"
@@ -1572,10 +1572,9 @@ async def complete_user_addition(admin_id: int, user_id: int, day: int, time: st
         text = (
             f"{EMOJI['bell']} <b>Вы добавлены в систему напоминаний!</b>\n"
             f"{format_divider()}"
-            f"{format_divider()}"
             f"{EMOJI['admin']} <b>Администратор:</b> {escape_html(admin_alias)}\n"
             f"{EMOJI['calendar']} <b>День напоминания:</b> {day} число\n"
-            f"{EMOJI['clock']} <b>Время:</b> {time}\n\n"
+            f"{EMOJI['clock']} <b>Время:</b> {time} (+5 МСК)\n\n"
         )
         
         if next_reminder:
@@ -1867,10 +1866,8 @@ async def send_payment_reminder(user_id: int, admin_id: int, message_text: str):
             f"{EMOJI['money']} <b>Напоминание об оплате!</b>\n"
             f"{format_divider()}"
             f"{escape_html(message_text)}\n\n"
-            f"{format_divider()}"
-            f"{escape_html(message_text)}\n\n"
             f"{EMOJI['admin']} От: <b>{escape_html(admin_alias)}</b>\n"
-            f"{EMOJI['clock']} Время: <b>{format_date(datetime.now())}</b>"
+            f"{EMOJI['clock']} Время: <b>{format_date(datetime.now())}</b> (+5 МСК)"
         )
         
         sent_message = await bot.send_message(
